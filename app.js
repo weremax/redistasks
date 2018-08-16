@@ -35,7 +35,6 @@ app.get('/', (req, res) => {
         });
         
     });
-    
 });
 
 app.post('/task/add', (req, res) => {
@@ -50,19 +49,23 @@ app.post('/task/add', (req, res) => {
 });
 
 app.post('/task/delete', (req, res) => {
-    var tasksToDel = req.body.tasks;
-    client.lrange('tasks', 0, -1, (err, tasks) => {
-        for(var i = 0; i < tasks.length; i++) {
-            if (tasksToDel.indexOf(tasks[i]) > -1) {
-                client.lrem('tasks', 0, tasks[i], () => {
-                    if (err) {
-                        console.log(err);
-                    }
-                });
+    if (req.body.tasks) {
+        var tasksToDel = req.body.tasks;
+        client.lrange('tasks', 0, -1, (err, tasks) => {
+            for(var i = 0; i < tasks.length; i++) {
+                if (tasksToDel.indexOf(tasks[i]) > -1) {
+                    client.lrem('tasks', 0, tasks[i], () => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                }
             }
-        }
+            res.redirect('/');
+        });
+    } else {
         res.redirect('/');
-    });
+    }
 });
 
 app.post('/call/add', (req, res) => {

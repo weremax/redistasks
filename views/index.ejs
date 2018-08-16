@@ -12,6 +12,9 @@
             body {
                 font-size: 10px;
             }
+            .left-pane {
+                width: 100px;
+            }
         </style>
 
     </head>
@@ -33,7 +36,7 @@
         </form>
 
 
-        <%= title %>
+        <h5><%= title %></h5>
 
         <form method="post" action="/task/delete">
             <ul class="task-list">
@@ -51,7 +54,7 @@
         </form>
 
         <div class="card card-body bg-light">
-                <h3>Next Business Call</h3>
+                <h5>Next Business Call</h5>
                 Name: <%= call.name %><br>
                 Company: <%= call.company %><br>
                 Phone: <%= call.phone %><br>
@@ -59,18 +62,18 @@
         </div>
         <br />
         <div class="card card-body bg-light">
-                <h3>Edit Next Call</h3>
+                <h5>Edit Next Call</h5>
                 <form method="post" action="/call/add">
-                    <label>Contact Name</label><br>
+                    <label class="left-pane">Contact Name</label>
                     <input type="text" name="name" placeholder="Task Name">
                     <br><br>
-                    <label>Company</label><br>
+                    <label class="left-pane">Company</label>
                     <input type="text" name="company" placeholder="Company">
                     <br><br>
-                    <label>Phone</label><br>
+                    <label class="left-pane">Phone</label>
                     <input type="text" name="phone" placeholder="Phone">
                     <br><br>
-                    <label>Day & Time</label><br>
+                    <label class="left-pane">Day & Time</label>
                     <input type="text" name="time" placeholder="Time">
                     <br><br>
                     <input type="submit" value="Submit" />
